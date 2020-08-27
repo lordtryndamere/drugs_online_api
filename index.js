@@ -16,7 +16,7 @@ dotenv.config();
 
 //Conect to DB
 mongoose.Promise  = global.Promise
-mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true,useUnifiedTopology:true})
+mongoose.connect(process.env.DB_CONNECT ,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(()=>{
     console.log("CONNECTION TO DATABASE SUCCESFULLY");  
 })
