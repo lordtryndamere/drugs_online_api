@@ -23,10 +23,7 @@ date:{
     type:Date,
     default:Date.now
 },
-role:{
-    type:Schema.Types.ObjectId,
-    ref:'role'
-}
+
 })
 
 module.exports = mongoose.model('User',userSchema);

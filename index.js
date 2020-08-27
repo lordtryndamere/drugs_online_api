@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const dotenv = require('dotenv');
 const bodyparser = require('body-parser');
 const mongoose  = require('mongoose');
+let port = process.env.PORT || 3000
 
 //Import Routes
 const authRoute = require('./routes/auth');
@@ -44,4 +45,4 @@ app.use((req, res, next) => {
 app.use('/API/user/',authRoute);
 app.use('/API/drug/',drugRoute);
 
-app.listen(3000,()=>console.log("Server up and running"));
+app.listen(port,()=>console.log("Server up and running"));
