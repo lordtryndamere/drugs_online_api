@@ -52,7 +52,7 @@ class AuthController {
       password: hassPassword,
       phone: item.phone,
       address: item.address,
-      typeUser: "admin",
+      typeUser: item.typeUser,
     });
 
     try {
