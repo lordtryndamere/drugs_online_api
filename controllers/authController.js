@@ -24,7 +24,7 @@ class AuthController {
     //Create and assign a token
 
     const token = jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user._id, email: user.email,role:user.typeUser },
       process.env.TOKEN_SECRET
     );
     res.header("auth-token", token).send({
@@ -38,7 +38,7 @@ class AuthController {
     //Lets validate the data before we a user
     const { error } = registervalidation(item);
     if (error) return res.status(400).send(error.details[0].message);
-
+    
     //Checking if the user is already in the database
     const emailExist = await User.findOne({ email: item.email });
     if (emailExist) return res.status(400).send("Email already exists");
@@ -62,6 +62,24 @@ class AuthController {
       res.status(500).send(err);
     }
   }
+
+  getProfile = async (req, res) => {
+    const id = req.user.id
+    const findUser = await User.findById(id).catch((err) =>
+      res.status(500).send(err.message)
+    );
+    if (!findUser)
+      return res
+        .status(404)
+        .send({ code: 404, message: "Usuario no encontrado" });
+    return res
+      .status(200)
+      .send({
+        code: 200,
+        message: "Usuario encontrado exitosamente",
+        findUser,
+      });
+  };
 
   getUser = async (req, res) => {
     const id = req.params.id;
@@ -97,6 +115,29 @@ class AuthController {
         users: findUser,
       });
   };
+
+  updateProfile = async (req, res) => {
+    const id = req.user.id;
+    const data = {
+      ...req.body,
+      updated_at: Date.now(),
+    };
+    const updateUser = await User.findByIdAndUpdate(id, data, {
+      new: true,
+    }).catch((err) => res.status(500).send(err.message));
+    if (!updateUser)
+      return res
+        .status(404)
+        .send({ code: 404, message: "Usuario no encontrado" });
+    return res
+      .status(200)
+      .send({
+        code: 200,
+        message: "Usuario actualizado correctamente",
+        user: updateUser,
+      });
+  };
+
 
   updateUser = async (req, res) => {
     const id = req.params.id;
