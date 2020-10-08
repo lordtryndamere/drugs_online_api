@@ -6,7 +6,10 @@ const registervalidation = data =>{
     const schema  = {
         name:Joi.string().min(6).required(),
         email:Joi.string().min(6).required().email(),
-        password:Joi.string().min(6).required()
+        password:Joi.string().min(6).required(),
+        phone:Joi.number().min(10).max(15).required(),
+        address:Joi.string().required(),
+
     }
     return Joi.validate(data,schema)
 }
