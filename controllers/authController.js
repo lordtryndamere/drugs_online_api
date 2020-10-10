@@ -28,6 +28,7 @@ class AuthController {
       process.env.TOKEN_SECRET
     );
     res.header("auth-token", token).send({
+      code:200,
       user: user,
       token: token,
     });
