@@ -15,11 +15,11 @@ class AuthController {
 
     //Checking if the  email exists
     const user = await User.findOne({ email: item.email });
-    if (!user) return res.status(400).send("Email is not found");
+    if (!user) return res.status(400).send({ code:400, message:"Email is not found"});
     //Password is correct
 
     const validPass = await bcrypt.compare(item.password, user.password);
-    if (!validPass) return res.status(400).send("Invalid password");
+    if (!validPass) return res.status(400).send({ code:400, message:"invalid password"});
 
     //Create and assign a token
 
@@ -42,7 +42,7 @@ class AuthController {
     
     //Checking if the user is already in the database
     const emailExist = await User.findOne({ email: item.email });
-    if (emailExist) return res.status(400).send("Email already exists");
+    if (emailExist) return res.status(400).send({ code:400, message:"Email ya existe"});
     //Hash password
     const salt = await bcrypt.genSalt(10);
     const hassPassword = await bcrypt.hash(item.password, salt);
