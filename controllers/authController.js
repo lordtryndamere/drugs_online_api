@@ -25,7 +25,8 @@ class AuthController {
 
     const token = jwt.sign(
       { id: user._id, email: user.email,role:user.typeUser },
-      process.env.TOKEN_SECRET
+      process.env.TOKEN_SECRET,{ expiresIn: 86400 // expires in 24 hours
+      }
     );
     res.header("auth-token", token).send({
       code:200,
