@@ -58,7 +58,7 @@ class AuthController {
 
     try {
       const savedUser = await user.save();
-      res.status(200).send({ code:200, message:"Usuario registrado exitosamente",user:savedUser});
+      res.status(200).send({ code:200, message:"Registro exitoso!",user:savedUser});
     } catch (err) {
       res.status(500).send(err);
     }
