@@ -7,7 +7,8 @@ exports.grantAccess = function(action, resource) {
    const permission = roles.can(req.user.role)[action](resource);
    if (!permission.granted) {
     return res.status(401).json({
-     error: "You don't have enough permission to perform this action"
+    code:401,
+     message: "No tienes permiso para realizar esta accion"
     });
    }
    next()
