@@ -45,4 +45,4 @@ app.use((req, res, next) => {
 app.use('/API/user/',authRoute);
 app.use('/API/drug/',drugRoute);
 
-app.listen(port,host,()=>console.log("Server up and running in "+port));
+app.listen(port,()=>console.log("Server up and running in "+port));
