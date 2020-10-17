@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const bodyparser = require('body-parser');
 const mongoose  = require('mongoose');
 let port = process.env.PORT || 3000
-
+let host = 'localhost'
 //Import Routes
 const authRoute = require('./routes/auth');
 const drugRoute = require('./routes/drugs')
@@ -45,4 +45,4 @@ app.use((req, res, next) => {
 app.use('/API/user/',authRoute);
 app.use('/API/drug/',drugRoute);
 
-app.listen(port,()=>console.log("Server up and running in "+port));
+app.listen(port,host,()=>console.log("Server up and running in "+port));
