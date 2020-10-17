@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const bodyparser = require('body-parser');
 const mongoose  = require('mongoose');
 let port = process.env.PORT || 3000
-let host = 'localhost'
+let host = "localhost"
 //Import Routes
 const authRoute = require('./routes/auth');
 const drugRoute = require('./routes/drugs')
